@@ -6,11 +6,13 @@ import { privateApiGET } from "../../components/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
-  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.app.profile);
 
   return (
     <Page title="home">
-      <h1>Welcome</h1>
+      <div style={{ position: "absolute", left: "380px" }}>
+        <h1>Hello</h1>
+      </div>
     </Page>
   );
 };

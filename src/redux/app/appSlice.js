@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isSessionActive: false,
+  profile: null,
 };
 
 export const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setSessionState(state, action) {
-      state.isSessionActive = action.payload;
+    setProfile(state, action) {
+      state.profile = action.payload;
     },
   },
 });
 
-export const { setSessionState } = appSlice.actions;
+export const { setProfile } = appSlice.actions;
 
 export default appSlice.reducer;

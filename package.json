@@ -39,6 +39,7 @@
     "@blueprintjs/datetime": "3.23.12",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@react-oauth/google": "^0.11.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@tabler/icons": "^1.61.0",
     "axios": "^0.26.1",

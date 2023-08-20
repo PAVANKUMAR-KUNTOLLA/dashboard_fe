@@ -1,10 +1,27 @@
 import React from "react";
 import Page from "../../components/Page";
 
+import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+
+const montserrat = {
+  fontFamily: "Montserrat",
+  fontWeight: "700",
+};
+
+const lato = {
+  fontFamily: "Lato",
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "19.2px",
+};
+
 const customStyles = {
   mainBlock: {
     display: "flex",
     flexDirection: "row",
+    width: "90%",
+    margin: "auto",
     height: "1024px",
   },
   leftSide: {
@@ -12,54 +29,163 @@ const customStyles = {
     backgroundColor: "#000000",
   },
   title: {
+    ...montserrat,
     width: "246px",
     height: "88px",
+    fontSize: "72px",
     marginTop: "464px",
     marginLeft: "171px",
-    fontFamily: "Montserrat",
-    fontSize: "72px",
     lineHeight: "87.7px",
     color: "#FFFFFF",
   },
   rightSide: {
     width: "852px",
     backgroundColor: "#F5F5F5",
+    position: "relative",
   },
   signIn: {
+    ...montserrat,
     width: "131px",
-    marginTop: "260px",
+    position: "absolute",
+    top: "260px",
     marginLeft: "244px",
-    fontFamily: "Montserrat",
     fontSize: "36px",
-    fontWeight: "700",
     lineHeight: "43.88px",
     letterSpacing: "0em",
     textAlign: "left",
     color: "#000000",
     marginBottom: "0px",
+    marginTop: "0px",
   },
   signInAccount: {
+    ...lato,
     width: "161px",
+    position: "absolute",
+    top: "309px",
     marginLeft: "244px",
-    marginTop: "6px",
-    fontFamily: "Lato",
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "19.2px",
     letterSpacing: "0em",
     color: "#000000",
+    marginBottom: "0px",
+    marginTop: "0px",
   },
   loginForm: {
     width: "385px",
-    height: "356px",
-    marginTop: "409px",
-    marginLeft: "832px",
-    borderRadius: "10px",
+    position: "absolute",
+    top: "354px",
+    marginLeft: "244px",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  loginCard: {
+    width: "385px",
+    height: "317px",
+    position: "relative",
+    top: "409px",
+    marginLeft: "244px",
+    radius: "20px",
+    backgroundColor: "#FFFFFF",
     border: "1px  #999999",
+    borderRadius: "10px",
+  },
+  email: {
+    ...lato,
+    width: "96px",
+    position: "absolute",
+    top: "30px",
+    left: "30px",
+    color: "#000000",
+    marginBottom: "0px",
+    marginTop: "0px",
+  },
+  inputEmail: {
+    position: "absolute",
+    width: "325px",
+    height: "40px",
+    top: "60px",
+    left: "30px",
+    backgroundColor: "#F5F5F5",
+  },
+  inputEmailText: {
+    ...lato,
+    position: "absolute",
+    top: "-7px", // Center vertically within inputEmail
+    left: "10px", // Adjusted left position
+    width: "142px", // Adjusted width
+  },
+
+  password: {
+    ...lato,
+    width: "96px",
+    position: "absolute",
+    top: "120px",
+    left: "30px",
+    color: "#000000",
+    marginBottom: "0px",
+    marginTop: "0px",
+  },
+  passwordInput: {
+    position: "absolute",
+    width: "325px",
+    height: "40px",
+    top: "150px", // Adjusted top position for password
+    left: "30px",
+    backgroundColor: "#EAEAEA",
+  },
+  passwordInputText: {
+    ...lato,
+    position: "absolute",
+    top: "-7px", // Center vertically within passwordInput
+    left: "10px", // Adjusted left position
+    width: "142px", // Adjusted width
+    color: "#000000",
+  },
+  forgetPassword: {
+    ...lato,
+    color: "#346BD4",
+    position: "absolute",
+    top: "210px",
+    left: "30px",
+  },
+  buttonSignIn: {
+    position: "absolute",
+    width: "325px",
+    height: "40px",
+    top: "247px",
+    left: "30px",
+    borderRadius: "10px",
+    backgroundColor: "#000000",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  buttonSignInName: {
+    ...montserrat,
+
+    fontSize: "16px",
+    paddingTop: "10px",
+    color: "#FFFFFF",
+    margin: "0 auto",
+  },
+  register: {
+    ...lato,
+    position: "absolute",
+    top: "736px",
+    color: "#858585",
+    marginLeft: "244px",
+    width: "385px",
+    textAlign: "center",
   },
 };
 
 const SignInPage = () => {
+  const navigate = useNavigate();
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      window.localStorage.setItem("token", codeResponse.access_token);
+      navigate("/");
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
   return (
     <Page title="signin">
       <div style={customStyles.mainBlock}>
@@ -69,7 +195,35 @@ const SignInPage = () => {
         <div style={customStyles.rightSide}>
           <p style={customStyles.signIn}>Sign In</p>
           <p style={customStyles.signInAccount}>Sign in to your account</p>
-          <div style={customStyles.loginForm}></div>
+          <div style={customStyles.loginForm}>
+            <img
+              src="/static/img/Google Sign Ingoogle.svg"
+              alt="sign in with google"
+              onClick={login}
+              style={{ cursor: "pointer" }}
+            />
+            <img src="/static/img/Apple Sign Inapple.svg" />
+          </div>
+          <div style={customStyles.loginCard}>
+            <p style={customStyles.email}>Email&nbsp;address</p>
+
+            <div style={customStyles.inputEmail}>
+              <p style={customStyles.inputEmailText}>johndoe@gmail.com</p>
+            </div>
+            <p style={customStyles.password}>Password</p>
+
+            <div style={customStyles.passwordInput}>
+              <p style={customStyles.passwordInputText}>••••••••</p>
+            </div>
+            <a style={customStyles.forgetPassword}>Forgot password?</a>
+            <div style={customStyles.buttonSignIn}>
+              <p style={customStyles.buttonSignInName}>Sign In</p>
+            </div>
+          </div>
+          <p style={customStyles.register}>
+            Don’t have an account?{" "}
+            <span style={{ color: "#346BD4" }}>Register here</span>
+          </p>
         </div>
       </div>
     </Page>

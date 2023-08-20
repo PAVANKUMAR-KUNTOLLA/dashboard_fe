@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import { Routes, Navigate, Route } from "react-router-dom";
 import PrivateRoute from "../components/PrivateRoute";
-import AppLayout from "./../Layout/appLayout";
+import AppLayout from "./../Layout/MainLayout/index";
 
 import config from "../config";
 
