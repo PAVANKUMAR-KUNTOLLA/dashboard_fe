@@ -1,5 +1,3 @@
-import config from "../../../config";
-
 const chartOptions = {
   typography: {
     fontFamily: " Montserrat",

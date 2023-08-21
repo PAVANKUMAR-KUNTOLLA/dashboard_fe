@@ -2,14 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { setProfile } from "../../redux/app/appSlice";
+import { setNavOpen, setProfile } from "../../redux/app/appSlice";
 import Navbar from "../MinimalLayout";
+import "../../App.css";
 
 const AppLayout = () => {
   const profile = useSelector((state) => state.app.profile);
   const [isLoadingSpin, SetIsLoadingSpin] = useState(false);
+  const isNavOpen = useSelector((state) => state.app.isNavOpen);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleNavChange = (value) => {
+    const dispatch = useDispatch();
+    dispatch(setNavOpen(value));
+  };
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -38,6 +45,7 @@ const AppLayout = () => {
 
   return (
     <div
+      className="appLayout"
       style={{
         backgroundColor: "#F5F5F5",
         width: "90%",
@@ -55,8 +63,7 @@ const AppLayout = () => {
             position: "relative",
           }}
         >
-          <Navbar />
-          <Outlet />
+          {isNavOpen ? <Navbar /> : <Outlet />}
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Page from "../../components/Page";
+import "../../App.css";
 
 import PieChart from "../../components/charts/PieChart";
 import MainCard from "../../components/MainCard";
@@ -10,7 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import CardItems from "../../components/CardItem/card";
 import SchedulerItem from "../../components/CardItem/Scheduler";
 import LineChartV3 from "./../../components/charts/LineChartV3";
-
+import { setNavOpen } from "../../redux/app/appSlice";
+import { handleNavChange } from "../../Layout/MainLayout";
 const customStyles = {
   title: {
     position: "absolute",
@@ -62,12 +64,14 @@ const customStyles = {
   },
 };
 const HomePage = () => {
-  const profile = useSelector((state) => state.app.profile);
+  const isNavOpen = useSelector((state) => state.app.isNavOpen);
+  const dispatch = useDispatch();
 
   return (
     <Page title="home">
       <div>
         <div
+          className="appBar"
           style={{
             position: "absolute",
             left: "380px",
@@ -78,15 +82,46 @@ const HomePage = () => {
             alignItems: "center", // Center vertically within the container
           }}
         >
-          <p style={customStyles.title}>Dashboard</p>
-          <div style={customStyles.searchInput}>
-            <p style={customStyles.searchInputName}>Search...</p>
+          <button
+            className="navbarButton"
+            onClick={() => dispatch(setNavOpen(true))}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon icon-tabler icon-tabler-menu-2"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="#000000"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 6l16 0" />
+              <path d="M4 12l16 0" />
+              <path d="M4 18l16 0" />
+            </svg>
+          </button>
+
+          <p style={customStyles.title} className="titleAppBar">
+            Dashboard
+          </p>
+          <div style={customStyles.searchInput} className="searchAppbar">
+            <p
+              style={customStyles.searchInputName}
+              className="searchInputNameAppbar"
+            >
+              Search...
+            </p>
             <img
               src="/static/img/Search.svg"
               style={customStyles.searchInputlogo}
             />
           </div>
           <img
+            className="notificationAppbar"
             src="/static/img/Notification.svg"
             alt="notification"
             style={{
@@ -97,6 +132,7 @@ const HomePage = () => {
             }}
           />
           <img
+            className="profileAppbar"
             src="/static/img/Profile.svg"
             alt="profile"
             style={{
@@ -116,6 +152,7 @@ const HomePage = () => {
           <CardItems />
         </div>
         <div
+          className="lineChart"
           style={{
             position: "absolute",
             top: "289px",
@@ -127,6 +164,7 @@ const HomePage = () => {
           <LineChartV3 />
         </div>
         <div
+          className="pieChart"
           style={{
             height: "256px",
             width: "480px",
@@ -163,6 +201,7 @@ const HomePage = () => {
           </MainCard>
         </div>
         <div
+          className="calendar"
           style={{
             position: "absolute",
             left: "900px",

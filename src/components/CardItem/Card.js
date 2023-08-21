@@ -33,7 +33,7 @@ const CardItems = () => {
       {options.map((option, id) => (
         <div
           key={id}
-          className="blockCard"
+          className={id === 1 || id === 3 ? "blockRightCard" : "blockLeftCard"}
           style={{
             left: left_pixels[id],
             backgroundColor: background_colors[id],

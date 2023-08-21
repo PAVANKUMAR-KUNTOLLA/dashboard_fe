@@ -57,7 +57,7 @@ const MainCard = React.forwardRef(
             </p>
           </div>
           <div>
-            <p
+            <div
               style={{
                 fontFamily: "Montserrat",
                 fontSize: "14px",
@@ -72,7 +72,7 @@ const MainCard = React.forwardRef(
               }}
             >
               {cardAction}
-            </p>
+            </div>
           </div>
         </div>
 

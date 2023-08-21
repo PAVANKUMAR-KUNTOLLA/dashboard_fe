@@ -52,7 +52,7 @@ const customStyles = {
 
 const SchedulerItem = () => {
   return (
-    <div style={customStyles.mainBlock}>
+    <div className="schedulerBlock" style={customStyles.mainBlock}>
       <p style={customStyles.title}>Today’s schedule</p>
       <p style={customStyles.next}>
         See All

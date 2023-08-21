@@ -1,5 +1,8 @@
 import React from "react";
 import "../../App.css";
+
+import { useDispatch } from "react-redux";
+import { setNavOpen } from "../../redux/app/appSlice";
 const montserrat = {
   fontFamily: "Montserrat",
   fontWeight: "700",
@@ -57,9 +60,24 @@ const customStyles = {
 };
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="mainNavbar">
       <div style={customStyles.mainBlock}>
+        <button
+          className="navbarButton"
+          style={{
+            ...customStyles.bottomText,
+            top: 20,
+            left: 20,
+            backgroundColor: "#000000",
+            marginLeft: 10,
+          }}
+          onClick={() => dispatch(setNavOpen(false))}
+        >
+          Home
+        </button>
         <p style={customStyles.title}>Board.</p>
 
         {options.map((option, id) => (

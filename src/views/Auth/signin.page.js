@@ -30,8 +30,6 @@ const customStyles = {
   },
   title: {
     ...montserrat,
-    width: "246px",
-    height: "88px",
     fontSize: "72px",
     marginTop: "464px",
     marginLeft: "171px",
@@ -188,14 +186,20 @@ const SignInPage = () => {
 
   return (
     <Page title="signin">
-      <div style={customStyles.mainBlock}>
-        <div style={customStyles.leftSide}>
-          <p style={customStyles.title}>Board.</p>
+      <div style={customStyles.mainBlock} className="loginMainBlock">
+        <div className="signinLeftSide" style={customStyles.leftSide}>
+          <p className="signinTitleLeftSide" style={customStyles.title}>
+            Board.
+          </p>
         </div>
-        <div style={customStyles.rightSide}>
-          <p style={customStyles.signIn}>Sign In</p>
-          <p style={customStyles.signInAccount}>Sign in to your account</p>
-          <div style={customStyles.loginForm}>
+        <div style={customStyles.rightSide} className="loginRightSide">
+          <p className="signinTitle" style={customStyles.signIn}>
+            Sign In
+          </p>
+          <p className="signinAccount" style={customStyles.signInAccount}>
+            Sign in to your account
+          </p>
+          <div className="signinLoginForm" style={customStyles.loginForm}>
             <img
               src="/static/img/Google Sign Ingoogle.svg"
               alt="sign in with google"
@@ -204,23 +208,42 @@ const SignInPage = () => {
             />
             <img src="/static/img/Apple Sign Inapple.svg" />
           </div>
-          <div style={customStyles.loginCard}>
-            <p style={customStyles.email}>Email&nbsp;address</p>
+          <div className="signinLoginCard" style={customStyles.loginCard}>
+            <p className="email" style={customStyles.email}>
+              Email&nbsp;address
+            </p>
 
-            <div style={customStyles.inputEmail}>
-              <p style={customStyles.inputEmailText}>johndoe@gmail.com</p>
+            <div className="inputEmail" style={customStyles.inputEmail}>
+              <p className="inputEmailText" style={customStyles.inputEmailText}>
+                johndoe@gmail.com
+              </p>
             </div>
-            <p style={customStyles.password}>Password</p>
+            <p className="password" style={customStyles.password}>
+              Password
+            </p>
 
-            <div style={customStyles.passwordInput}>
-              <p style={customStyles.passwordInputText}>••••••••</p>
+            <div className="passwordInput" style={customStyles.passwordInput}>
+              <p
+                className="passwordInputText"
+                style={customStyles.passwordInputText}
+              >
+                ••••••••
+              </p>
             </div>
-            <a style={customStyles.forgetPassword}>Forgot password?</a>
-            <div style={customStyles.buttonSignIn}>
-              <p style={customStyles.buttonSignInName}>Sign In</p>
+            <div className="forgotPassword" style={customStyles.forgetPassword}>
+              <a>Forgot password?</a>
+            </div>
+
+            <div className="buttonSignIn" style={customStyles.buttonSignIn}>
+              <p
+                className="buttonSignInName"
+                style={customStyles.buttonSignInName}
+              >
+                Sign In
+              </p>
             </div>
           </div>
-          <p style={customStyles.register}>
+          <p className="signinRegister" style={customStyles.register}>
             Don’t have an account?{" "}
             <span style={{ color: "#346BD4" }}>Register here</span>
           </p>

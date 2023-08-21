@@ -23,7 +23,6 @@ export const LineChartOptions = {
       maxWidth: "1000px",
       borderRadius: "20px",
       border: "1px solid #EAEAEA",
-
       backgroundColor: "#FFFFFF",
     },
   },
