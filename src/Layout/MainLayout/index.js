@@ -40,6 +40,10 @@ const AppLayout = () => {
     <div
       style={{
         backgroundColor: "#F5F5F5",
+        width: "90%",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: " auto 40px",
         height: "100vh",
       }}
     >

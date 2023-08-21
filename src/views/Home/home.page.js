@@ -9,7 +9,7 @@ import { privateApiGET } from "../../components/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import CardItems from "../../components/CardItem/card";
 import SchedulerItem from "../../components/CardItem/Scheduler";
-import LineChart from "../../components/charts/LineChart";
+import LineChartV3 from "./../../components/charts/LineChartV3";
 
 const customStyles = {
   title: {
@@ -122,12 +122,9 @@ const HomePage = () => {
             left: "380px",
             width: "1000px",
             height: "359px",
-            margin: "0px",
-            // overflow: "scroll",
-            // maxHeight: "359px",
           }}
         >
-          <LineChart />
+          <LineChartV3 />
         </div>
         <div
           style={{
@@ -139,7 +136,7 @@ const HomePage = () => {
           }}
         >
           <MainCard
-            cardTitle="Top Products"
+            cardTitle="Top products"
             contentHeight="256px"
             isLoadingSpin={false}
             cardAction={

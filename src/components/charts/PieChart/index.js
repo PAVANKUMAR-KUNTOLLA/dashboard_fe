@@ -60,14 +60,17 @@ const PieChart = ({
     .style("opacity", 0);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "flex",
-        justifyContent: "space-around",
-      }}
-    >
-      <div style={{ width: "134px", height: "134px" }}>
+    <>
+      <div
+        style={{
+          position: "absolute",
+          width: "134px",
+          height: "134px",
+          top: "90px",
+          left: "45px",
+          transform: "rotate(180deg)",
+        }}
+      >
         {enableLegends && (
           <LegendsV2 data={data} textValue={tValue} colors={colors} />
         )}
@@ -101,14 +104,21 @@ const PieChart = ({
         </svg>
       </div>
 
-      <div>
+      <div
+        style={{
+          position: "absolute",
+          top: "80px",
+          left: "244px",
+        }}
+      >
         {arcData.map((d, i) => (
           <div
             key={i}
             style={{
               color: colors[i],
-              margin: 0,
-              paddingBottom: "21px",
+              width: "168px",
+              height: "36px",
+              paddingBottom: "10px",
               display: i > 2 ? "none" : "",
             }}
           >
@@ -133,30 +143,42 @@ const PieChart = ({
             </svg>
             <p
               style={{
-                paddingLeft: "3px",
+                position: "absolute",
+                left: "20px",
                 color: "#000000",
                 fontWeight: "700px",
                 display: "inline-flex",
                 margin: 0,
+                fontFamily: "Montserrat",
+                fontSize: "14px",
+                fontWeight: "700",
+                lineHeight: "17px",
+                letterSpacing: "0em",
+                textAlign: "left",
               }}
             >
               {tValue(d.data)}
             </p>
             <p
               style={{
-                color: "#000000",
-                fontWeight: "400px",
-                margin: 0,
-                paddingTop: "3px",
-                paddingLeft: "14px",
+                position: "absolute",
+                left: "20px",
+                marginTop: "-0px",
+                color: "#858585",
+                fontFamily: "Lato",
+                fontSize: "12px",
+                fontWeight: "400",
+                lineHeight: "14px",
+                letterSpacing: "0em",
+                textAlign: "left",
               }}
             >
-              {dValue(d.data)}
+              {dValue(d.data)}%
             </p>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
@@ -172,29 +194,31 @@ PieChart.propTypes = {
 PieChart.defaultProps = {
   data: [
     {
-      brand: "Frisco",
-      volume: 100,
+      product: "Basic Tees",
+      volume: 55,
     },
     {
-      brand: "Zippy Paws",
-      volume: 400,
+      product: "Custom Short Pants",
+      volume: 31,
     },
     {
-      brand: "Barkbox",
-      volume: 125,
-    },
-    {
-      brand: "Outward Hound",
-      volume: 380,
-    },
-    {
-      brand: "Zanies",
-      volume: 250,
+      product: "Super Hoodies",
+      volume: 14,
     },
   ],
-  colors: ["#ed4319", "#f4a347", "#a3c388", "#1a99aa", "#103c46"],
-  textField: "brand",
+  colors: [
+    "#98D89E",
+    "#F6DC7D",
+    "#EE8484",
+    "#ed4319",
+    "#f4a347",
+    "#a3c388",
+    "#1a99aa",
+    "#103c46",
+  ],
+  textField: "product",
   dataField: "volume",
+
   toolTipHtml: ({ data, dValue, tValue, format }) =>
     `<span><b>${tValue(data.data)}:</b> ${format(dValue(data.data))}</span>`,
   enableLegends: false,

@@ -28,6 +28,8 @@ const MainCard = React.forwardRef(
         style={{
           borderRadius: "20px",
           backgroundColor: "#FFFFFF",
+          width: "480px",
+          height: "256px",
         }}
       >
         <div
@@ -39,9 +41,39 @@ const MainCard = React.forwardRef(
           }}
         >
           <div>
-            <p>{cardTitle}</p>
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontWeight: "700",
+                fontSize: "18px",
+                lineHeight: "21.94px",
+                position: "absolute",
+                left: "30px",
+                top: "40px",
+                margin: "0px",
+              }}
+            >
+              {cardTitle}
+            </p>
           </div>
-          <div>{cardAction}</div>
+          <div>
+            <p
+              style={{
+                fontFamily: "Montserrat",
+                fontSize: "14px",
+                lineHeight: "14.94px",
+                fontWeight: "400",
+                position: "absolute",
+                fontSize: "12px",
+                color: "#858585",
+                top: "34px",
+                left: "327px",
+                margin: "0px",
+              }}
+            >
+              {cardAction}
+            </p>
+          </div>
         </div>
 
         <div

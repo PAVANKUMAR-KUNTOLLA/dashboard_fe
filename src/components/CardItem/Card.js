@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../../App.css";
 const options = [
   "Total Revenues",
   "Total Transactions",
@@ -27,23 +27,14 @@ const openSans = {
   textAlign: "left",
 };
 
-const customStyles = {
-  mainBlock: {
-    position: "absolute",
-    width: "221.05px",
-    height: "120px",
-    top: "129px",
-  },
-};
-
 const CardItems = () => {
   return (
-    <>
+    <div className="mainBlock">
       {options.map((option, id) => (
         <div
           key={id}
+          className="blockCard"
           style={{
-            ...customStyles.mainBlock,
             left: left_pixels[id],
             backgroundColor: background_colors[id],
             borderRadius: "20px",
@@ -80,7 +71,7 @@ const CardItems = () => {
           </p>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

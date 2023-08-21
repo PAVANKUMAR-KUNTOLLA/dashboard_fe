@@ -4,15 +4,11 @@ import PropTypes from "prop-types";
 //Highcharts
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import config from "../../config";
 
 export const chartOptions = {
-  font: config.fontFamily,
   typography: {
-    fontFamily: config.fontFamily,
-    fontSize: "14px",
-    lineHeight: "22px",
-    color: "#555555",
+    fontFamily: " Montserrat",
+    letterSpacing: " 0em",
   },
   colors: ["#f4a347", "#f4a347", "#a3c388", "#1a99aa", "#103c46", "#88ba01"],
   colorsV2: ["#0D4C92", "#59C1BD", "#7EC384", "#6AA5A9"],
@@ -21,7 +17,15 @@ export const chartOptions = {
 export const LineChartOptions = {
   chart: {
     type: "spline",
-    style: { ...chartOptions.typography },
+    style: {
+      ...chartOptions.typography,
+      maxHeight: "359px",
+      maxWidth: "1000px",
+      borderRadius: "20px",
+      border: "1px solid #EAEAEA",
+
+      backgroundColor: "#FFFFFF",
+    },
   },
   colors: chartOptions.colorsV2,
   credits: {
@@ -31,11 +35,20 @@ export const LineChartOptions = {
   title: {
     text: "U.S Solar Employment Growth",
     align: "left",
+    x: 10,
+    y: 30,
+    margin: 60,
   },
 
   subtitle: {
     text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
     align: "left",
+    fontSize: "14px",
+    fontFamily: "400px",
+    color: "#858585",
+    lineHeight: "17px",
+    x: 10,
+    y: 60,
   },
 
   yAxis: {
@@ -55,16 +68,9 @@ export const LineChartOptions = {
     layout: "vertical",
     align: "right",
     verticalAlign: "top",
-    marginTop: "-20px",
-  },
-
-  plotOptions: {
-    series: {
-      label: {
-        connectorAllowed: false,
-      },
-      pointStart: 0,
-    },
+    floating: true,
+    y: 30,
+    x: 0,
   },
 
   series: [
@@ -92,13 +98,17 @@ export const LineChartOptions = {
           },
         },
       },
+      label: {
+        connectorAllowed: false,
+      },
+      pointStart: 0,
     },
   },
   responsive: {
     rules: [
       {
         condition: {
-          width: 921,
+          width: 1000,
         },
         chartOptions: {
           legend: {
@@ -115,9 +125,13 @@ export const LineChartOptions = {
 
 const LineChart = () => {
   return (
-    <div style={{ borderRadius: "20px", borderColor: "#FFFFFF" }}>
-      <HighchartsReact highcharts={Highcharts} options={LineChartOptions} />
-    </div>
+    <HighchartsReact
+      highcharts={Highcharts}
+      options={LineChartOptions}
+      containerProps={{
+        style: { height: "100%", width: "100%" },
+      }}
+    />
   );
 };
 

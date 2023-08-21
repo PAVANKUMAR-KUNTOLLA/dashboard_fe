@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../../App.css";
 const montserrat = {
   fontFamily: "Montserrat",
   fontWeight: "700",
@@ -58,7 +58,7 @@ const customStyles = {
 
 const Navbar = () => {
   return (
-    <div>
+    <div className="mainNavbar">
       <div style={customStyles.mainBlock}>
         <p style={customStyles.title}>Board.</p>
 
