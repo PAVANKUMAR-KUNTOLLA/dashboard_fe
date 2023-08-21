@@ -17,6 +17,7 @@ const customStyles = {
     borderRadius: "30px",
     backgroundColor: "#000000",
     position: "relative",
+    marginRight: "0",
   },
   title: {
     ...montserrat,
