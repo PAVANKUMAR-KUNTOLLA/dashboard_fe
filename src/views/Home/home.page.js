@@ -8,7 +8,7 @@ import MainCard from "../../components/MainCard";
 import Api from "../../components/Api";
 import { privateApiGET } from "../../components/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import CardItems from "../../components/CardItem/card";
+import CardItems from "../../components/CardItem/Card";
 import SchedulerItem from "../../components/CardItem/Scheduler";
 import LineChartV3 from "./../../components/charts/LineChartV3";
 import { setNavOpen } from "../../redux/app/appSlice";
