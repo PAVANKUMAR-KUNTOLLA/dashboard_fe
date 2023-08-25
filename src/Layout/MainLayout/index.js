@@ -13,14 +13,9 @@ const AppLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleNavChange = (value) => {
-    const dispatch = useDispatch();
-    dispatch(setNavOpen(value));
-  };
-
   useEffect(() => {
     let token = localStorage.getItem("token");
-
+    console.log(window.screen.width);
     SetIsLoadingSpin(true);
     axios({
       method: "GET",
@@ -63,7 +58,8 @@ const AppLayout = () => {
             position: "relative",
           }}
         >
-          {isNavOpen ? <Navbar /> : <Outlet />}
+          {(window.screen.width > 767 || isNavOpen) && <Navbar />}
+          {!isNavOpen ? <Outlet /> : null}
         </div>
       )}
     </div>

@@ -8,7 +8,7 @@ import MainCard from "../../components/MainCard";
 import Api from "../../components/Api";
 import { privateApiGET } from "../../components/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import CardItems from "../../components/CardItem/card";
+import CardItems from "../../components/CardItem/Card";
 import SchedulerItem from "../../components/CardItem/Scheduler";
 import LineChartV3 from "./../../components/charts/LineChartV3";
 import { setNavOpen } from "../../redux/app/appSlice";
@@ -64,8 +64,42 @@ const customStyles = {
   },
 };
 const HomePage = () => {
-  const isNavOpen = useSelector((state) => state.app.isNavOpen);
   const dispatch = useDispatch();
+  const [products, setProducts] = useState({});
+  const [activity, setActivity] = useState({});
+
+  const handleFetchProducts = () => {
+    privateApiGET(Api.products)
+      .then((response) => {
+        const { status, data } = response;
+        if (status === 200) {
+          console.log("data", data);
+          setProducts(data?.data);
+        }
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
+
+  const handleFetchActivity = () => {
+    privateApiGET(Api.activity)
+      .then((response) => {
+        const { status, data } = response;
+        if (status === 200) {
+          console.log("data", data);
+          setActivity(data?.data);
+        }
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
+
+  useEffect(() => {
+    handleFetchActivity();
+    handleFetchProducts();
+  }, []);
 
   return (
     <Page title="home">
@@ -151,55 +185,67 @@ const HomePage = () => {
         >
           <CardItems />
         </div>
-        <div
-          className="lineChart"
-          style={{
-            position: "absolute",
-            top: "289px",
-            left: "380px",
-            width: "1000px",
-            height: "359px",
-          }}
-        >
-          <LineChartV3 />
-        </div>
-        <div
-          className="pieChart"
-          style={{
-            height: "256px",
-            width: "480px",
-            position: "absolute",
-            top: "688px",
-            left: "380px",
-          }}
-        >
-          <MainCard
-            cardTitle="Top products"
-            contentHeight="256px"
-            isLoadingSpin={false}
-            cardAction={
-              // <select
-              //   name="month"
-              //   id="month"
-              //   style={{ borderColor: "transparent", backgroundColor: "none" }}
-              // >
-              //   <option value="january">Jan-Feb</option>
-              //   <option value="february">Feb-Mar</option>
-              //   <option value="march">Mar-Apr</option>
-              //   <option value="april">Apr-May</option>
-              //   <option value="may">May-Jun</option>
-              // </select>
-              <p>
-                May - June 2021
-                <span style={{ paddingLeft: "5px" }}>
-                  <img src="/static/img/Vectordropdown.svg" alt="drop down" />
-                </span>
-              </p>
-            }
+        {activity && (
+          <div
+            className="lineChart"
+            style={{
+              position: "absolute",
+              top: "289px",
+              left: "380px",
+              width: "1000px",
+              height: "359px",
+            }}
           >
-            <PieChart />
-          </MainCard>
-        </div>
+            <LineChartV3
+              data={activity.data}
+              title={activity.title}
+              subtitle={activity.subtitle}
+              xLabel={activity.xLabel}
+              yLabel={activity.yLabel}
+              x_field={activity.x_field}
+              y_field={activity.y_field}
+            />
+          </div>
+        )}
+        {products && (
+          <div
+            className="pieChart"
+            style={{
+              height: "256px",
+              width: "480px",
+              position: "absolute",
+              top: "688px",
+              left: "380px",
+            }}
+          >
+            <MainCard
+              cardTitle={products.title}
+              contentHeight="256px"
+              isLoadingSpin={false}
+              cardAction={
+                // <select
+                //   name="month"
+                //   id="month"
+                //   style={{ borderColor: "transparent", backgroundColor: "none" }}
+                // >
+                //   <option value="january">Jan-Feb</option>
+                //   <option value="february">Feb-Mar</option>
+                //   <option value="march">Mar-Apr</option>
+                //   <option value="april">Apr-May</option>
+                //   <option value="may">May-Jun</option>
+                // </select>
+                <p>
+                  {products.subtitle}
+                  <span style={{ paddingLeft: "5px" }}>
+                    <img src="/static/img/Vectordropdown.svg" alt="drop down" />
+                  </span>
+                </p>
+              }
+            >
+              <PieChart data={products.data} />
+            </MainCard>
+          </div>
+        )}
         <div
           className="calendar"
           style={{
